@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import toDoReducer from '../redux states/to-dos/to-dos'
+import toDoReducer from '../redux states/to-dos'
 export const store = configureStore({
   reducer: {
     toDo: toDoReducer,
