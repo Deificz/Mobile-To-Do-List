@@ -9,7 +9,8 @@ export default function App() {
     <SafeAreaProvider>
       <Provider store={store}>
         <View style={styles.container}>
-          <Text>To-do-List</Text>
+          <Text style={styles.title}>To-do-List</Text>
+          <Task/>
           <Task/>
         </View>
       </Provider>
@@ -21,8 +22,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#e3e3e3',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    padding: 15,
   },
+  title:{
+    alignSelf: 'flex-start',
+    fontSize: 40,
+    fontWeight: 'bold'
+  }
 });
