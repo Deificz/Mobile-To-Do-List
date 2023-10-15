@@ -11,7 +11,7 @@ import { Icon } from "@rneui/themed";
 
 type Props = {
   id: string;
-  task: string;
+  name: string;
 };
 
 const Task = (props: Props) => {
@@ -19,7 +19,7 @@ const Task = (props: Props) => {
     <View style={styles.task}>
       <View style={styles.leftSide}>
         <TouchableOpacity style={styles.removeTask}></TouchableOpacity>
-        <Text style={styles.taskLabel}>{props.task}Task 1</Text>
+        <Text style={styles.taskLabel}>{props.name}Task 1</Text>
       </View>
       <Icon
         name="material-community"
