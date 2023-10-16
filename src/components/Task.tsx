@@ -7,19 +7,26 @@ import {
 } from "react-native";
 import React from "react";
 import { Icon } from "@rneui/themed";
-
+import { useDispatch } from "react-redux";
+import { removeToDo } from "../redux states/to-dos";
 
 type Props = {
   id: string;
   name: string;
+  isDone: boolean;
 };
 
 const Task = (props: Props) => {
+  const dispatch = useDispatch();
+
+  const handleRemoveTask = (id:string) =>{
+    dispatch(removeToDo(id));
+  }
   return (
     <View style={styles.task}>
       <View style={styles.leftSide}>
-        <TouchableOpacity style={styles.removeTask}></TouchableOpacity>
-        <Text style={styles.taskLabel}>{props.name}Task 1</Text>
+        <TouchableOpacity onPress={() => handleRemoveTask(props.id)} style={props.isDone ? styles.removeTaskDone : styles.removeTask}/>
+        <Text style={props.isDone ? styles.taskLabelDone : styles.taskLabel}>{props.name}</Text>
       </View>
       <Icon
         name="material-community"
@@ -52,12 +59,23 @@ const styles = StyleSheet.create({
   removeTask: {
     height: 24,
     width: 24,
-    backgroundColor: "#5a9dfa",
+    backgroundColor: "#ad1d2b",
+    borderRadius: 3,
+    marginRight: 15,
+  },
+  removeTaskDone: {
+    height: 24,
+    width: 24,
+    backgroundColor: "#1dad5c",
     borderRadius: 3,
     marginRight: 15,
   },
   taskLabel: {
     maxWidth: "80%",
+  },
+  taskLabelDone: {
+    maxWidth: "80%",
+    textDecorationLine: 'line-through',
   },
   diamond: {
     fontSize: 10,

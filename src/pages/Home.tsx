@@ -13,7 +13,7 @@ import Task from "../components/Task";
 import { Icon } from "@rneui/themed";
 import { RootState } from "../app/store";
 import { useSelector, useDispatch } from "react-redux";
-import { addToDo, removeToDo } from "../redux states/to-dos";
+import { addToDo} from "../redux states/to-dos";
 type Props = {};
 
 const Home = (props: Props) => {
@@ -23,14 +23,16 @@ const Home = (props: Props) => {
   const dispatch = useDispatch();
 
   const handleAddTask = () => {
-    dispatch(addToDo(currentTask));
-    console.log(currentTask);
+    if(currentTask){
+      dispatch(addToDo(currentTask));
+      setCurrentTask("");
+    }; 
+    
   };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>To-do-List</Text>
-      {/* <Task />
-      <Task /> */}
+      {tasks.map(task => <Task id={task.id} name={task.name} isDone={task.isDone}/>)}
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={styles.taskInputWrapper}
@@ -38,6 +40,7 @@ const Home = (props: Props) => {
         <TextInput
           style={styles.taskInput}
           placeholder="Write a task"
+          value={currentTask}
           onChangeText={(input) => setCurrentTask(input)}
         />
         <TouchableOpacity onPress={handleAddTask}>
