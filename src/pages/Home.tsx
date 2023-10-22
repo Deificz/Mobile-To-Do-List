@@ -14,6 +14,8 @@ import { Icon } from "@rneui/themed";
 import { RootState } from "../app/store";
 import { useSelector, useDispatch } from "react-redux";
 import { addToDo} from "../redux states/to-dos";
+import { SafeAreaView } from "react-native-safe-area-context";
+
 type Props = {};
 
 const Home = (props: Props) => {
@@ -30,6 +32,7 @@ const Home = (props: Props) => {
     
   };
   return (
+  <SafeAreaView>
     <View style={styles.container}>
       <Text style={styles.title}>To-do-List</Text>
       {tasks.map(task => <Task id={task.id} name={task.name} isDone={task.isDone}/>)}
@@ -55,6 +58,7 @@ const Home = (props: Props) => {
         </TouchableOpacity>
       </KeyboardAvoidingView>
     </View>
+  </SafeAreaView>
   );
 };
 
